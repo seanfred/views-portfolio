@@ -1,0 +1,10 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Code Fellows Portfolio
+  technologies_used: Rails
+
+two:
+  name: Project Name Two
+  technologies_used: JavaScript

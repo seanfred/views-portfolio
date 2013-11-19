@@ -1,0 +1,5 @@
+yr:
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M:%S %z"
+

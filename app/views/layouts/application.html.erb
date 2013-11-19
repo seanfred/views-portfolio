@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="a portfolio site">
+    <meta name="author" content="Sean Frederick">
+
+    <title>Sean Frederick Portfolio</title>
+
+    <!-- Add custom CSS here
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+     -->
+
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+              <%= value %>
+        </div>
+  <% end %>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+          <%= link_to "Home", root_path, class: "navbar-brand" %>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="about.html">About</a></li>
+            <li><%= link_to "Blog", posts_path %></li>
+            <li><%= link_to "Projects", projects_path %></li>
+            <% if current_user.present? %>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
+            <% end %>
+
+            <!-- <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="portfolio-1-col.html">1 Column Portfolio</a></li>
+                <li><a href="portfolio-2-col.html">2 Column Portfolio</a></li>
+                <li><a href="portfolio-3-col.html">3 Column Portfolio</a></li>
+                <li><a href="portfolio-4-col.html">4 Column Portfolio</a></li>
+                <li><a href="portfolio-item.html">Single Portfolio Item</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="blog-home-1.html">Blog Home 1</a></li>
+                <li><a href="blog-home-2.html">Blog Home 2</a></li>
+                <li><a href="blog-post.html">Blog Post</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="full-width.html">Full Width Page</a></li>
+                <li><a href="sidebar.html">Sidebar Page</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="404.html">404</a></li>
+                <li><a href="pricing.html">Pricing Table</a></li>
+              </ul>
+            </li> -->
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+
+
+
+<!--     <div class="section">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 col-md-4">
+            <h3><i class="icon-ok-circle"></i> Bootstrap 3 Built</h3>
+            <p>The 'Modern Business' website template by <a href="http://startbootstrap.com">Start Bootstrap</a> is built with <a href="http://getbootstrap.com">Bootstrap 3</a>. Make sure you're up to date with latest Bootstrap documentation!</p>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h3><i class="icon-pencil"></i> Ready to Style &amp; Edit</h3>
+            <p>Your ready to go with this pre-built page structure, now all you need to do is add your own custom stylings! You can see some free themes over at <a href="http://bootswatch.com">Bootswatch</a>, or come up with your own using <a href="http://getbootstrap.com/customize/">the Bootstrap customizer</a>!</p>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h3><i class="icon-folder-open-alt"></i> Many Page Options</h3>
+            <p>This template features many common pages that you might see on a business website. Pages include: about, contact, portfolio variations, blog, pricing, FAQ, 404, services, and general multi-purpose pages.</p>
+          </div>
+        </div><!-- /.row -->
+
+      <!-- </div><!-- /.container -->
+
+    <!-- </div>/.section -->
+
+    <div class="section-colored text-center">
+
+      <div class="container">
+        <%= yield %>
+
+
+
+    </div><!-- /.container -->
+
+    <div class="container">
+
+      <hr>
+
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Copyright &copy; Sean Frederick 2013</p>
+          </div>
+        </div>
+      </footer>
+
+    </div><!-- /.container -->
+  </body>
+</html>
+

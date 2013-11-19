@@ -1,0 +1,37 @@
+<div class="comment_form">
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for [@commentable, @comment] do |f| %>
+    <div class="field">
+      <%= f.label :author, "Your name" %>
+      <%= f.text_field :author %>
+    </div>
+    <div class="field">
+      <%= f.label :author_email, "Your email" %>
+      <%= f.text_field :author_email %>
+    </div>
+    <div class="field">
+      <%= f.label :author_url, "Your URL" %>
+      <%= f.text_field :author_url %>
+    </div>
+    <div class="field">
+      <%= f.label :content, "Your Comment" %>
+      <%= f.text_field :content %>
+    </div>
+    <%= f.hidden_field :referrer, value: request.referrer %>
+    <%= f.hidden_field :commentable_id,  value: @commentable.id %>
+    <div class="actions">
+      <%= f.submit "Submit comment for approval" %>
+    <div>
+  <% end %>
+</div><!-- .comment_form -->

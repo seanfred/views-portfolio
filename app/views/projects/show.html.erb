@@ -1,0 +1,19 @@
+<article>
+<h1><%= @project.name %></h1>
+ <p>Technologies used: <%= @project.technologies_used %>
+
+  <b>Comments:</b><br><br>
+    <% @project.comments.each do |comment| %>
+      <% #if comment.approved? %>
+        <strong><%= comment.content %></strong><br>
+        Author: <%= comment.author %><br>
+        <% if comment.author_url? %>
+        URL: <%= comment.author_url %><br>
+        <% end %>
+        Email: <%= comment.author_email %>
+      <% #end %>
+    <br><br><% end %><br><br>
+
+<%= render "comments/form" %>
+
+</article>

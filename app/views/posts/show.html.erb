@@ -1,0 +1,31 @@
+<article>
+<h1><%= @post.title %></h1>
+
+<p id="author">
+  <b>By:</b>
+  <%= @post.author.email %>
+</p>
+
+<div id="post_body">
+  <%= @post.body %>
+</div>
+<hr>
+<% if policy(@post).update? %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
+
+  <b>Comments:</b><br><br>
+    <% @post.comments.each do |comment| %>
+      <% #if comment.approved? %>
+        <strong><%= comment.content %></strong><br>
+        Author: <%= comment.author %><br>
+        <% if comment.author_url? %>
+        URL: <%= comment.author_url %><br>
+        <% end %>
+        Email: <%= comment.author_email %>
+      <% #end %>
+    <br><br><% end %><br><br>
+
+</article>
+<%= render "comments/form" %>
+<p class="back_link"><%= link_to 'Back to the blog', posts_path %></p>
